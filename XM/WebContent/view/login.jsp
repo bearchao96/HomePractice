@@ -80,10 +80,14 @@
                             <li><a href="#">二手房</a></li>
                         </ul>
                         <ul class="nav navbar-nav">
+						
                             <li><a href="#">新房</a></li>
+							
                         </ul>
                         <ul class="nav navbar-nav">
+						
                             <li><a href="#">商铺</a></li>
+							
                         </ul>
                         <ul class="nav navbar-nav">
                             <li><a href="#">写字楼</a></li>
