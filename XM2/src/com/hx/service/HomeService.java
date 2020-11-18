@@ -5,12 +5,11 @@ import java.util.List;
 import com.hx.entity.Home;
 
 /**
- * 房屋业务层接口哈哈哈哈哈哈哈哈嘎嘎啊哈哈
+ * 房屋业务层接口
  * @author bear
  *
  */
 public interface HomeService {
-	
 
   //添加房屋信息的方法	
   public void addAllHome(Home home);

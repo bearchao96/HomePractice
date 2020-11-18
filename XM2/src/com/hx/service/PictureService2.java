@@ -9,9 +9,6 @@ import com.hx.entity.Picture;
  *
  */
 public interface PictureService2 {
-	
-	
-	//我是git 来测试的啊
 
 	//查询所有图片
 	public List<Picture> findAllPicture();
