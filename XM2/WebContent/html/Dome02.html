@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>图片管理</title>
+    <link rel="stylesheet" href="../css/amazeui.min.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="../js/jquery-3.1.0.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="../js/bootstrap.min.js"></script>
+
+<div style="margin-top: 20px;margin-left: 20px">
+    <h1 style="color: #67b168; border-bottom: solid 1px lightgreen">图片管理</h1>
+</div>
+<div class="container">
+    <div>
+        <table class="table table-hover table-bordered table-striped" id="tb02">
+            <tr>
+                <th>图片编号</th>
+                <th>图片地址1</th>
+                <th>图片地址2</th>
+                <th>图片地址3</th>
+                <th>房屋地址</th>        	 	
+                <th>操作</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+			<!--添加模态框-->
+            <div class="modal fade" tabindex="-1" role="dialog" id="modal02">
+                <div class="modal-dialog  modal-sm" role="document">
+                    <div class="modal-content">
+                 		<form method="post" action="/XM2/ZFUpload" enctype="multipart/form-data">
+                 			<div style="padding-left: 50px;">
+                 			<label>请选择上传图片</label><input type="file" name="file02">
+                 			</div>
+                 			<br>
+                 			<div style="text-align: center;">
+                 			<input type="submit" value="上传">
+                 			</div>
+                 		</form>
+                 		<br>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+
+
+<script>
+    //去后台那图片地址
+    $(document).ready(function () {
+        $.post("http://localhost:8080/XM2/HomeServlet?method=findAllPicture",function (data) {
+            
+            //将json字符串转变成javaScript 对象
+            var obj = eval("("+data+")");
+            for(var i =0 ; i < obj.length ; i++ ){
+                $("#tb02").append("<tr><td>"+obj[i].p_id+
+                    "</td><td>"+obj[i].p_address1+
+                    "</td><td>"+obj[i].p_address2+
+                    "</td><td>"+obj[i].p_address3+
+                    "</td><td>"+obj[i].home.h_address3+
+                    "</td><td>"+"<button type='button' class='btn btn-primary'>修改</button>&nbsp;&nbsp;<button type='button' class='btn btn-primary' onclick='upPicture("+obj[i].home_id+")'>上传</button>"+"</td></tr>")
+            }
+        })
+    })
+
+    
+    
+    
+   
+    
+    
+    
+     /*上传图片的方法  */
+        //弹出模态框
+        function upPicture(id){
+    	    //同时通过AJAX  给后台传递数据 房屋id 
+    		$.post("/XM2/HomeServlet?method=saveHome_id",{id:id},function(data){
+    			
+    		})
+            $("#modal02").modal('show')
+        }
+
+</script>
+
+</body>
+
+
+</html>

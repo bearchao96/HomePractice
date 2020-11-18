@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>房屋管理</title>
+    <link rel="stylesheet" href="../css/amazeui.min.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    
+    <style type="text/css">
+    	
+    	
+    
+    </style>
+</head>
+<body>
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="../js/jquery-3.1.0.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="../js/bootstrap.min.js"></script>
+
+    <div style="margin-top: 20px;margin-left: 20px">
+      <h1 style="color: #67b168; border-bottom: solid 1px lightgreen">房屋管理</h1>
+    </div>
+
+
+        <div>
+            <table class="table table-hover table-bordered table-striped"  id="tb01">
+                <tr>
+                    <th>房屋编号</th>
+                    <th>租贷方式</th>
+                    <th>房屋描述</th>
+                    <th>房屋类型</th>
+                    <th>房屋朝向</th>
+                    <th>所在小区</th>
+                    <th>所在区域</th>
+                    <th>详细地址</th>
+                    <th>房屋租价</th>
+                    <th>付款方式</th>
+                    <th>房屋信息</th>
+                    <th>房东信息</th>
+                </tr>
+            </table>
+        </div>
+
+        <div style="text-align: center;margin-top:20% ; position:absolute letf:20px;" >
+            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+            <button type="button" class="btn btn-primary" id="but01" onclick="run01()">添加信息</button>&nbsp;&nbsp;
+            <!-- Indicates a successful or positive action -->
+            <button type="button" class="btn btn-success" onclick="run02()">修改信息</button>&nbsp;&nbsp;
+            <!-- Contextual button for informational alert messages -->
+            <button type="button" class="btn btn-info" onclick="run03()">查询信息</button>&nbsp;&nbsp;
+            <!-- Indicates a dangerous or potentially negative action -->
+            <button type="button" class="btn btn-danger" onclick="run04()">删除信息</button>
+        </div>
+
+        <!--添加模态框1-->
+            <div class="modal fade" tabindex="-1" role="dialog" id="modal01">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">添加房屋</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" method="post" action="/XM2/HomeServlet?method=addAllHome" id="form01">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">房屋描述</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp01" placeholder="" name="fwms">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">租贷方式</label>
+                                    <div class="col-sm-10">
+                                        整&nbsp;&nbsp;租<input type="radio" id="finp02" name="cheak" checked="checked" value="整租">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        单间出租<input type="radio"  id="fdiv02" name="cheak" value="单间出租">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">房屋类型</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp03" placeholder="" name="fwlx">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">房屋朝向</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp04" placeholder="" name="fwcx">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">所在小区</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp05" placeholder="" name="szxq">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">所在区域</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp06" placeholder="" name="szqy">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">详细地址</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp07" placeholder="" name="xxdz">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">房屋租价</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp08" placeholder="" name="fwzj">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">付款方式</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp09" placeholder="" name="fkfs">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">房屋信息</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp10" placeholder="" name="fwxx">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">房东信息</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp11" placeholder="" name="fdxx">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn btn-primary" onclick="tj()">提交</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+	<!--添加模态框2-->
+            <div class="modal fade" tabindex="-1" role="dialog" id="modal02">
+                <div class="modal-dialog " role="document">
+                    <div class="modal-content">
+                 		<div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">修改房屋</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" method="post" action="/XM2/HomeServlet?method=updateHome" id="form02">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">房屋描述</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp01" placeholder="" name="fwms">
+                                    </div>
+                                </div> 
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">租贷方式</label>
+                                    <div class="col-sm-10">
+                                        整&nbsp;&nbsp;租<input type="radio" id="finp02" name="cheak" checked="checked" value="整租">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        单间出租<input type="radio"  id="fdiv02" name="cheak" value="单间出租">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">房屋类型</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp03" placeholder="" name="fwlx">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">房屋朝向</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp04" placeholder="" name="fwcx">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">房屋租价</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp08" placeholder="" name="fwzj">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">付款方式</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp09" placeholder="" name="fkfs">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3" class="col-sm-2 control-label">房屋信息</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="finp10" placeholder="" name="fwxx">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="submit" class="btn btn-primary" onclick="tj2()">提交</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+</body>
+
+   <!--去后台服务器拿数据-->
+    <script type="text/javascript">
+    	
+    	//回显所有房屋信息
+        $(document).ready(function () {
+            //通过AJAX 访问后台 获取数据
+            $.post("http://localhost:8080/XM/indexServlet?method=findHomeMsg",function (data) {
+                //将json字符串转变成javaScript 对象
+                var obj = eval("("+data+")");
+
+                for(var i =0 ; i < obj.length ; i++ ){
+                $("#tb01").append("<tr><td>"+obj[i].h_id+
+                                    "</td><td>"+obj[i].h_way+
+                                    "</td><td>"+obj[i].h_ms+
+                                    "</td><td>"+obj[i].h_type+
+                                    "</td><td>"+obj[i].h_direction+
+                                    "</td><td>"+obj[i].h_address1+
+                                    "</td><td>"+obj[i].h_address2+
+                                    "</td><td>"+obj[i].h_address3+
+                                    "</td><td>"+obj[i].h_money+
+                                    "</td><td>"+obj[i].h_buyway+
+                                    "</td><td>"+obj[i].h_msg +
+                                    "</td><td>"+obj[i].h_hostmsg+"</td></tr>")
+                }
+            })
+        })
+
+
+        //弹出模态框
+        function run01(){
+            $("#modal01").modal('show')
+        }
+
+        //修改房屋信息
+        function run02(){
+            var id =  prompt("请输入您要修改的房屋编号：")
+            $.post("/XM2/HomeServlet?method=findById",{id:id},function(data){
+            	//判断
+            	if(data === "false"){
+            		alert("对不起，您要修改的租房不存在")
+            	}else{
+            		//通过AJAX 去后台储存数据
+                    $.post("/XM2/HomeServlet?method=save_id",{id:id},function(data){
+                    	
+                    })
+                    if(id === null){
+                        $("#modal02").modal('hide')
+                    }else{
+                        $("#modal02").modal('show')
+                    }
+            	}
+            })
+        }
+
+        //查询房屋信息
+        function run03(){
+        	var name =  prompt("请输入您要查询的房主姓名：")
+        	$.post("/XM2/HomeServlet?method=findHomeMsg2",{name:name},function(data){
+        		//先清空之前的所有内容在拼接
+        		$("#tb01 tr:not(:first)").empty();
+        		//将json字符串转变成javaScript 对象
+                var obj = eval("("+data+")");
+
+                for(var i =0 ; i < obj.length ; i++ ){
+                $("#tb01").append("<tr><td>"+obj[i].h_id+
+                                    "</td><td>"+obj[i].h_way+
+                                    "</td><td>"+obj[i].h_ms+
+                                    "</td><td>"+obj[i].h_type+
+                                    "</td><td>"+obj[i].h_direction+
+                                    "</td><td>"+obj[i].h_address1+
+                                    "</td><td>"+obj[i].h_address2+
+                                    "</td><td>"+obj[i].h_address3+
+                                    "</td><td>"+obj[i].h_money+
+                                    "</td><td>"+obj[i].h_buyway+
+                                    "</td><td>"+obj[i].h_msg +
+                                    "</td><td>"+obj[i].h_hostmsg+"</td></tr>")
+                }
+        	})
+        	
+        }
+        
+        //删除房屋信息
+        function run04(){
+        	var id = prompt("请输入您要删除的房屋编号");
+        	$.post("/XM2/HomeServlet?method=deleteHome",{id:id},function(data){
+        		
+        	})
+        	
+        }
+        
+        
+        //添加表单提交
+        function  tj(){
+        	$("#form01").submit();
+        }
+        function  tj2(){
+        	$("#form02").submit();
+        }
+
+    </script>
+
+</html>
