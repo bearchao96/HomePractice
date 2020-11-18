@@ -58,8 +58,11 @@ public class ShowServlet extends HttpServlet {
         Picture picture = pictureService.findPicture(id);
         //从本地文件中读取图片路径
         File file = new File("D:\\ZFpicture");
+		
         //获取本地路径名
+		//我来测试一下是否成功
         String path = file.getPath();
+		
         //创键字节输入流
 
         FileInputStream fis = null;

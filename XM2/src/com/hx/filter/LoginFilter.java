@@ -13,6 +13,7 @@ import java.io.IOException;
 @WebFilter(filterName = "LoginFilter")
 public class LoginFilter implements Filter {
     public void destroy() {
+		
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
@@ -29,6 +30,7 @@ public class LoginFilter implements Filter {
             chain.doFilter(request,response);
 
         }else{
+			
             //继续判断
             Admin admin = (Admin) request.getSession().getAttribute("Admin");
             if(admin!=null){

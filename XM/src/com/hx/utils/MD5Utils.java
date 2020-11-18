@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 
 /**
- * 使用MD5进行设置一个工具类
+ * 使用MD5进行设置一个工具类 该工具类是一个加密工具类
  */
 public class MD5Utils {
 	//制作一个MD5加密的方法
