@@ -1,8 +1,11 @@
 package com.hx.entity;
 
 public class Picture {
+	//图片id
     private int p_id ;
+	//图片地址一
     private String p_address1 ;
+	
     private String p_address2 ;
     private String p_address3;
     private int home_id ;
