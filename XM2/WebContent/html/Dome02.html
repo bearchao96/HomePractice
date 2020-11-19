@@ -85,6 +85,7 @@
      /*上传图片的方法  */
         //弹出模态框
         function upPicture(id){
+		
     	    //同时通过AJAX  给后台传递数据 房屋id 
     		$.post("/XM2/HomeServlet?method=saveHome_id",{id:id},function(data){
     			
