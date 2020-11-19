@@ -79,16 +79,20 @@ public class indexServlet extends HttpServlet {
      * @param response
      */
     private void addyyHome(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
         //拿到房屋id号码
         int id = (int) request.getSession().getAttribute("id");
         //拿到用户对象
         User user = (User) request.getSession().getAttribute("User");
+		
         //去添加用户信息
         HomeServive homeServive = new HomeServiceImpl();
+		
         //调用添加预约的方法
         boolean flag = homeServive.addyyHome(user, id);
         //判断回显
         if(flag == true){
+			
             //预约成功
             response.getWriter().write("true");
         }else{
@@ -104,12 +108,16 @@ public class indexServlet extends HttpServlet {
      * @param response
      */
     private void findHostMsg(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
         //拿到房子的id
         int id = (int) request.getSession().getAttribute("id");
+		
         //创建出房东的业务层
         HostService hostService = new HostServiceImpl();
+		
         //调用业务层的方法查询房东
         Host hostMsg = hostService.findHostMsg(id);
+		
         //回显数据
         response.getWriter().write(JSONObject.toJSONString(hostMsg));
     }
